@@ -77,7 +77,7 @@ void lambda_reference_capture() {
 - \[\] 空捕获列表
 - \[name1, name2, ...\] 捕获一系列变量
 - \[&\] 引用捕获, 让编译器自行推导捕获列表
-- \[=\] 值捕获, 让编译器执行推导应用列表
+- \[=\] 值捕获, 让编译器执行推导引用列表
 
 **4. 表达式捕获**
 
@@ -470,7 +470,7 @@ void pass(T&& v) {
     std::cout << "    std::forward 传参: ";
     reference(std::forward<T>(v));
     std::cout << "static_cast<T&&> 传参: ";
-    reference(std::forward<T>(v));
+    reference(static_cast<T&&>(v));
 }
 int main() {
     std::cout << "传递右值:" << std::endl;
